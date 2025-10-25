@@ -1,0 +1,67 @@
+[
+  {
+    "id": "1",
+    "name": "Sample Event",
+    "date": "2025-10-01",
+    "createdAt": "2025-10-01",
+    "attendees": 100,
+    "status": "completed",
+    "type": "Conference",
+    "archivedAt": "2025-10-25T14:02:06.312Z"
+  },
+  {
+    "name": "dsad",
+    "date": "2025-09-30",
+    "time": "10:00",
+    "location": "dsa",
+    "attendees": 2,
+    "status": "Completed",
+    "id": "4aa385ab-9abf-4fb6-a55c-7b9c5f43e99b",
+    "createdAt": "2025-10-25T13:35:15.567Z",
+    "archivedAt": "2025-10-25T13:35:23.058Z"
+  },
+  {
+    "name": "jcc",
+    "date": "2025-10-25",
+    "time": "10:00",
+    "location": "dadsfsggdgdg",
+    "attendees": 2,
+    "status": "Completed",
+    "id": "1",
+    "createdAt": "2025-10-25T11:54:28.755Z",
+    "archivedAt": "2025-10-25T11:54:37.734Z"
+  },
+  {
+    "name": "dsad",
+    "date": "2025-10-31",
+    "time": "10:00",
+    "location": "dsa",
+    "attendees": 2,
+    "status": "Pending",
+    "id": "2",
+    "createdAt": "2025-10-25T10:29:23.832Z",
+    "archivedAt": "2025-10-25T11:46:29.851Z"
+  },
+  {
+    "name": "kawit",
+    "date": "2025-10-25",
+    "time": "22:00",
+    "location": "dsa",
+    "attendees": 3,
+    "status": "Pending",
+    "id": "4d6b1ed5-304d-4adc-af0b-6672574f95b1",
+    "createdAt": "2025-10-25T09:52:52.762Z",
+    "archivedAt": "2025-10-25T10:18:48.227Z"
+  },
+  {
+    "name": "jc",
+    "date": "2025-10-25",
+    "time": "22:01",
+    "location": "dq",
+    "attendees": 2,
+    "status": "Upcoming",
+    "id": "eb69592c-237a-4242-9399-eba3b51cbc2e",
+    "createdAt": "2025-10-25T10:06:03.099Z",
+    "archivedAt": "2025-10-25T10:13:05.650Z"
+  }
+]
