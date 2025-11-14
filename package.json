@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "DATABASE_URL='file:./dev.db' prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
-    "prisma:generate": "prisma generate",
+    "prisma:generate": "DATABASE_URL='file:./dev.db' prisma generate",
     "prisma:migrate": "prisma migrate dev --name init",
     "seed": "NODE_OPTIONS=\"--loader ts-node/esm\" ts-node --esm scripts/seed.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "DATABASE_URL='file:./dev.db' prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
