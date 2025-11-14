@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev --name init",
-    "seed": "NODE_OPTIONS=\"--loader ts-node/esm\" ts-node --esm scripts/seed.ts"
+    "seed": "NODE_OPTIONS=\"--loader ts-node/esm\" ts-node --esm scripts/seed.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
