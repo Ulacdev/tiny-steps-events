@@ -11,9 +11,12 @@ export async function GET(request: NextRequest) {
         eventTitle: 'Baby Shower Celebration',
         eventStatus: 'Approved',
         eventDate: new Date().toISOString(),
+        eventTime: '2:00 PM',
         venue: 'Sample Venue',
+        eventTheme: 'Twinkle Star',
+        numberOfGuests: 50,
         totalAmount: 15000,
-        gallery: []
+        gallery: ['/placeholder.jpg']
       }
     ]
     return NextResponse.json({

@@ -916,7 +916,7 @@ export default function EventsPage() {
                 </div>
                 <div className="detail-item">
                   <span className="detail-icon">👥</span>
-                  <span>{currentEvent.numberOfGuests} guests expected</span>
+                  <span>{Number.isFinite(currentEvent.numberOfGuests) && currentEvent.numberOfGuests > 0 ? currentEvent.numberOfGuests : 'TBD'} guests expected</span>
                 </div>
               </div>
             </div>
