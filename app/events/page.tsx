@@ -39,11 +39,14 @@ export default function EventsPage() {
       setIsLoading(true)
       const response = await fetch('/api/events')
       const result = await response.json()
-      if (result.success) {
-        setEvents(result.data || [])
+      if (result.success && Array.isArray(result.data)) {
+        setEvents(result.data)
+      } else {
+        setEvents([])
       }
     } catch (error) {
       console.error('Failed to fetch events:', error)
+      setEvents([])
     } finally {
       setIsLoading(false)
     }
@@ -786,16 +789,16 @@ export default function EventsPage() {
           {/* Filter Buttons */}
           <div className="filter-buttons">
             {[
-              { key: "all", label: "All Events", count: events.length },
-              { key: "upcoming", label: "Upcoming Events", count: events.filter(e => e.eventStatus === "Approved").length },
-              { key: "past", label: "Past Events", count: events.filter(e => e.eventStatus === "Completed").length }
+              { key: "all", label: "All Events", count: events.length || 0 },
+              { key: "upcoming", label: "Upcoming Events", count: events.filter(e => e.eventStatus === "Approved").length || 0 },
+              { key: "past", label: "Past Events", count: events.filter(e => e.eventStatus === "Completed").length || 0 }
             ].map((filter) => (
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key as any)}
                 className={`filter-btn ${activeFilter === filter.key ? 'active' : ''}`}
               >
-                {filter.label} ({filter.count})
+                {filter.label} ({Number.isFinite(filter.count) ? filter.count : 0})
               </button>
             ))}
           </div>
@@ -948,7 +951,7 @@ export default function EventsPage() {
 
                   {/* Counter */}
                   <div className="slideshow-counter">
-                    {currentImageIndex + 1} of {currentEvent.gallery.length}
+                    {currentImageIndex + 1} of {currentEvent.gallery ? currentEvent.gallery.length : 0}
                   </div>
                 </>
               ) : (
