@@ -63,279 +63,105 @@ export function Header({ isSidebarOpen, onToggleSidebar }: HeaderProps) {
   return (
     <>
       <style jsx global>{`
-        /* Enhanced Header Animations */
-        @keyframes headerGlow {
-          0%, 100% { box-shadow: 0 4px 20px rgba(255, 105, 180, 0.1); }
-          50% { box-shadow: 0 4px 30px rgba(255, 105, 180, 0.2); }
-        }
-
-        @keyframes logoFloat {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-2px) rotate(1deg); }
-          66% { transform: translateY(-4px) rotate(-1deg); }
-        }
-
-        @keyframes titleShimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-
         .header-comic {
-          background: rgba(255, 255, 255, 0.25) !important;
-          backdrop-filter: blur(15px) !important;
-          -webkit-backdrop-filter: blur(15px) !important;
-          border-bottom: 2px solid rgba(255, 105, 180, 0.2) !important;
-          box-shadow: 0 4px 20px rgba(255, 105, 180, 0.1) !important;
+          background: #ffb6c1 !important;
+          border-bottom: 2px solid #ff69b4 !important;
           padding: 1.5rem 2rem !important;
           font-family: 'Georgia', serif !important;
-          position: relative !important;
-          animation: headerGlow 4s ease-in-out infinite !important;
         }
-
-        .header-comic::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.05), transparent);
-          animation: titleShimmer 3s ease-in-out infinite;
-          pointer-events: none;
-        }
-
         .header-content {
           display: flex;
           align-items: center;
           justify-content: space-between;
           max-width: 1400px;
           margin: 0 auto;
-          position: relative;
-          z-index: 2;
         }
-
         .header-left {
           display: flex;
           align-items: center;
           gap: 1.5rem;
         }
-
         .header-menu-btn {
-          background: rgba(255, 255, 255, 0.3) !important;
-          border: 2px solid rgba(255, 105, 180, 0.3) !important;
+          background: #ffffff !important;
+          border: 2px solid #ffb6c1 !important;
           color: #6d4c5c !important;
           padding: 0.75rem !important;
-          border-radius: 12px !important;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-          position: relative !important;
-          overflow: hidden !important;
+          border-radius: 8px !important;
+          transition: background-color 0.3s ease !important;
         }
-
-        .header-menu-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.2), transparent);
-          transition: left 0.5s ease;
-        }
-
-        .header-menu-btn:hover::before {
-          left: 100%;
-        }
-
         .header-menu-btn:hover {
-          background: rgba(255, 105, 180, 0.15) !important;
-          transform: translateY(-2px) scale(1.05) !important;
-          box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3) !important;
+          background: #ffe4f0 !important;
         }
-
-        .header-logo {
-          animation: logoFloat 4s ease-in-out infinite !important;
-          transition: transform 0.3s ease !important;
-        }
-
-        .header-logo:hover {
-          transform: scale(1.1) !important;
-        }
-
         .header-title {
           font-size: 1.8rem;
-          font-weight: 700;
-          letter-spacing: 0.5px;
+          font-weight: 600;
+          color: white;
           text-transform: none;
-          background: linear-gradient(135deg, #ff69b4, #ffb6c1, #ff69b4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          position: relative;
         }
-
-        .header-title::after {
-          content: '✨';
-          position: absolute;
-          right: -25px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 1.2rem;
-          animation: logoFloat 3s ease-in-out infinite reverse;
-        }
-
         .header-right {
           display: flex;
           align-items: center;
           gap: 1rem;
         }
-
         .header-profile-btn {
           display: flex;
           align-items: center;
           gap: 1rem;
-          background: rgba(255, 255, 255, 0.2);
-          border: 2px solid rgba(255, 105, 180, 0.2);
+          background: #ffffff;
+          border: 2px solid #ffb6c1;
           padding: 0.75rem 1.5rem;
-          border-radius: 15px;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 8px;
+          transition: background-color 0.3s ease;
           cursor: pointer;
           color: #6d4c5c;
           font-weight: 500;
-          letter-spacing: 0.5px;
-          text-transform: none;
-          position: relative;
-          overflow: hidden;
         }
-
-        .header-profile-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.1), transparent);
-          transition: left 0.5s ease;
-        }
-
-        .header-profile-btn:hover::before {
-          left: 100%;
-        }
-
         .header-profile-btn:hover {
-          background: rgba(255, 105, 180, 0.1);
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+          background: #ffe4f0;
         }
-
         .header-avatar {
-          width: 45px;
-          height: 45px;
-          border: 3px solid rgba(255, 105, 180, 0.4);
-          transition: all 0.3s ease;
+          width: 40px;
+          height: 40px;
+          border: 2px solid #ff69b4;
         }
-
-        .header-avatar:hover {
-          border-color: #ff69b4;
-          transform: scale(1.1);
-        }
-
         .header-user-info {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
         }
-
         .header-user-name {
           font-size: 1rem;
-          font-weight: 600;
+          font-weight: 500;
           color: #6d4c5c;
-          background: linear-gradient(135deg, #6d4c5c, #8b4f6f);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
         }
-
         .header-user-role {
           font-size: 0.8rem;
-          font-weight: 500;
+          font-weight: 400;
           color: #8b4f6f;
-          opacity: 0.8;
         }
-
         .header-dropdown {
-          background: rgba(255, 255, 255, 0.98) !important;
-          backdrop-filter: blur(20px) !important;
-          -webkit-backdrop-filter: blur(20px) !important;
-          border: 2px solid rgba(255, 105, 180, 0.3) !important;
-          box-shadow: 0 12px 40px rgba(255, 105, 180, 0.2) !important;
-          border-radius: 15px !important;
+          background: #ffffff !important;
+          border: 2px solid #ffb6c1 !important;
+          border-radius: 8px !important;
           font-family: 'Georgia', serif !important;
-          animation: fadeInUp 0.3s ease-out !important;
         }
-
         .header-dropdown-item {
-          font-weight: 600 !important;
-          letter-spacing: 0.5px !important;
-          text-transform: none !important;
+          font-weight: 500 !important;
           color: #6d4c5c !important;
-          border-radius: 10px !important;
-          transition: all 0.3s ease !important;
-          padding: 0.75rem 1rem !important;
+          border-radius: 4px !important;
         }
-
         .header-dropdown-item:hover {
-          background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 182, 193, 0.1)) !important;
+          background: #ffe4f0 !important;
           color: #ff69b4 !important;
-          transform: translateX(5px) !important;
         }
-
         .header-logout-item {
-          background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 182, 193, 0.1)) !important;
+          background: #ffe4f0 !important;
           color: #ff69b4 !important;
-          border-top: 2px solid rgba(255, 105, 180, 0.2) !important;
-          margin-top: 0.5rem !important;
-          padding-top: 1rem !important;
+          border-top: 1px solid #ffb6c1 !important;
         }
-
         .header-logout-item:hover {
-          background: linear-gradient(135deg, rgba(255, 105, 180, 0.15), rgba(255, 182, 193, 0.15)) !important;
+          background: #ffb6c1 !important;
           color: #ff69b4 !important;
-          transform: translateX(5px) !important;
-        }
-
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        /* Mobile Enhancements */
-        @media (max-width: 768px) {
-          .header-comic {
-            padding: 1rem 1.5rem !important;
-          }
-
-          .header-title {
-            font-size: 1.4rem;
-          }
-
-          .header-title::after {
-            display: none;
-          }
-
-          .header-profile-btn {
-            padding: 0.5rem 1rem;
-          }
-
-          .header-user-info {
-            display: none;
-          }
         }
       `}</style>
 
