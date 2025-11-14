@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
+import { Breadcrumb } from '@/components/breadcrumb'
 
 type FormValues = {
     name: string
@@ -26,15 +27,28 @@ export default function AccountPage() {
         let mounted = true
         const load = async () => {
             try {
-                const res = await fetch('/api/admin/info')
-                if (!res.ok) throw new Error('api')
+                const email = localStorage.getItem('userEmail')
+                if (!email) {
+                  router.push("/login")
+                  return
+                }
+                const res = await fetch(`/api/admin/info?email=${encodeURIComponent(email)}`)
+                if (!res.ok) {
+                  if (res.status === 404) {
+                    // User not found in database, clear localStorage and redirect to login
+                    localStorage.clear()
+                    router.push("/login")
+                    return
+                  }
+                  throw new Error('api')
+                }
                 const json = await res.json()
                 if (!mounted) return
                 reset({
-                    name: json.name || '',
-                    email: json.email || '',
-                    password: json.password || '',
-                    image: json.image || ''
+                  name: json.name || '',
+                  email: json.email || '',
+                  password: json.password || '',
+                  image: json.image || ''
                 })
                 localStorage.setItem('userName', json.name || '')
                 localStorage.setItem('userEmail', json.email || '')
@@ -50,10 +64,15 @@ export default function AccountPage() {
 
     const onSubmit = async (data: FormValues) => {
         try {
+            const email = localStorage.getItem('userEmail')
+            if (!email) {
+              toast({ title: 'Error', description: 'User email not found.' })
+              return
+            }
             const res = await fetch('/api/admin/info', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
+                body: JSON.stringify({ ...data, email }),
             })
             if (!res.ok) throw new Error('Failed to save via API')
             const json = await res.json()
@@ -83,8 +102,12 @@ export default function AccountPage() {
     const imagePreview = watch('image')
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-semibold mb-4">My account</h1>
+        <div className="space-y-6 p-4 md:p-0">
+            <Breadcrumb />
+            <div>
+                <h1 className="text-2xl md:text-3xl font-bold">My Account</h1>
+                <p className="text-muted-foreground mt-2 text-sm md:text-base">Manage your admin profile information</p>
+            </div>
 
             <form
                 onSubmit={handleSubmit(onSubmit)}

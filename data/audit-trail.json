@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "action": "CREATE",
+    "entity": "Event",
+    "entityId": 1,
+    "details": "Created event: Tech Conference 2025",
+    "user": "admin@eventmis.com",
+    "timestamp": "2025-01-10T10:30:00Z",
+    "changes": {
+      "name": "Tech Conference 2025",
+      "date": "2025-03-15",
+      "location": "Convention Center"
+    }
+  },
+  {
+    "id": 2,
+    "action": "UPDATE",
+    "entity": "Event",
+    "entityId": 1,
+    "details": "Updated event: Tech Conference 2025",
+    "user": "admin@eventmis.com",
+    "timestamp": "2025-01-12T11:45:00Z",
+    "changes": {
+      "attendees": "250"
+    }
+  },
+  {
+    "id": 3,
+    "action": "ARCHIVE",
+    "entity": "Event",
+    "entityId": 1,
+    "details": "Archived event: Sample Event",
+    "user": "admin@eventmis.com",
+    "timestamp": "2025-10-25T14:02:06.312Z",
+    "changes": {}
+  },
+  {
+    "id": 4,
+    "action": "LOGIN",
+    "entity": "User",
+    "entityId": 0,
+    "details": "User logged in",
+    "user": "admin@eventmis.com",
+    "timestamp": "2025-01-15T08:00:00Z",
+    "changes": {}
+  }
+]

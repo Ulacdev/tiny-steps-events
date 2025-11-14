@@ -1,0 +1,408 @@
+/* ==================== */
+/* CSS VARIABLES & RESET */
+/* ==================== */
+:root {
+  /* Pink-Based Design System - Tiny Steps Theme */
+  /* Primary Colors */
+  --pink-blossom: #FF9ECF;
+  --pink-rose: #FF7BB4;
+  --pink-blush: #FFE6F1;
+
+  /* Neutral Colors */
+  --charcoal: #2B2B2B;
+  --warm-gray: #5A5A5A;
+  --soft-white: #FFFFFF;
+
+  /* Accent Colors */
+  --baby-blue: #A3D8FF;
+  --gold: #D4AF37;
+  --lavender: #C9A7F5;
+
+  /* Legacy Support */
+  --foreground: #2B2B2B;
+  --background: #FFE6F1;
+  --muted-foreground: #5A5A5A;
+  --border: #FFE6F1;
+
+  /* Primary Colors (Updated) */
+  --primary: #FF7BB4;
+  --primary-hover: #FF8DC3;
+  --secondary: #A3D8FF;
+  --accent: #FFE6F1;
+
+  /* Spacing System */
+  --spacing-xs: 8px;
+  --spacing-s: 12px;
+  --spacing-m: 20px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 80px;
+
+  /* Fonts */
+  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Poppins", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.6;
+  min-height: 100vh;
+  animation: backgroundFadeIn 0.5s ease-out;
+}
+
+@keyframes backgroundFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: var(--spacing-xl);
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+h6 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--warm-gray);
+  font-weight: 400;
+}
+
+.body-large {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--warm-gray);
+  font-weight: 400;
+}
+
+.caption {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--warm-gray);
+  font-weight: 400;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==================== */
+/* CONTAINER & LAYOUT  */
+/* ==================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ==================== */
+/* BUTTONS             */
+/* ==================== */
+.btn {
+  display: inline-block;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 16px;
+}
+
+.btn-primary {
+  background: var(--pink-rose);
+  color: var(--soft-white);
+  padding: 14px 32px;
+  box-shadow: 0 6px 16px rgba(255, 123, 180, 0.4);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 141, 195, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--baby-blue);
+  color: var(--charcoal);
+  padding: 12px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(163, 216, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(163, 216, 255, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(163, 216, 255, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--pink-rose);
+  border: 2px solid var(--pink-blossom);
+  padding: 12px 28px;
+  border-radius: 14px;
+}
+
+.btn-ghost:hover {
+  background: var(--pink-blossom);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 158, 207, 0.3);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ==================== */
+/* SECTIONS            */
+/* ==================== */
+section {
+  padding: var(--spacing-xl) 0;
+}
+
+/* Card System - Pink Theme */
+.glass-panel, .card {
+  background: var(--soft-white);
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: var(--spacing-xl);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 158, 207, 0.1);
+}
+
+.glass-panel:hover, .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(255, 123, 180, 0.1);
+}
+
+.panel-title, .card-title {
+  font-size: 20px;
+  color: var(--charcoal);
+  font-weight: 600;
+  margin-bottom: var(--spacing-s);
+  text-align: center;
+}
+
+.panel-subtitle, .card-subtitle {
+  color: var(--warm-gray);
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: var(--spacing-l);
+  font-weight: 400;
+}
+
+.card-image {
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  margin-bottom: var(--spacing-m);
+}
+
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.03);
+}
+
+/* ==================== */
+/* ANIMATIONS          */
+/* ==================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==================== */
+/* RESPONSIVE DESIGN   */
+/* ==================== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+
+  section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .glass-panel, .card {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border-radius: 20px;
+  }
+
+  .panel-title, .card-title {
+    font-size: 18px;
+    margin-bottom: var(--spacing-s);
+  }
+
+  .panel-subtitle, .card-subtitle {
+    font-size: 14px;
+    margin-bottom: var(--spacing-l);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+
+  section {
+    padding: var(--spacing-md) 0;
+  }
+
+  .glass-panel, .card {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-radius: 16px;
+  }
+
+  .panel-title, .card-title {
+    font-size: 16px;
+  }
+
+  .panel-subtitle, .card-subtitle {
+    font-size: 12px;
+  }
+}

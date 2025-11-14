@@ -1,0 +1,165 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Event {
+  id              String   @id @default(cuid())
+  clientName      String
+  contactNumber   String?
+  email           String?
+  eventTitle      String
+  eventTheme      String
+  packageType     String
+  eventDate       DateTime
+  eventTime       String?
+  venue           String
+  numberOfGuests  Int      @default(50)
+  paymentStatus   String   @default("Pending")
+  totalAmount     Float    @default(15000)
+  remarks         String?
+  eventStatus     String   @default("Pending")
+  gallery         String   @default("[]")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  archivedAt      DateTime?
+}
+
+model ArchivedEvent {
+  id              String   @id @default(cuid())
+  clientName      String
+  contactNumber   String?
+  email           String?
+  eventTitle      String
+  eventTheme      String
+  packageType     String
+  eventDate       DateTime
+  eventTime       String?
+  venue           String
+  numberOfGuests  Int      @default(50)
+  paymentStatus   String
+  totalAmount     Float
+  remarks         String?
+  eventStatus     String
+  gallery         String   @default("[]")
+  createdAt       DateTime
+  updatedAt       DateTime
+  archivedAt      DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  username  String   @unique @default("")
+  email     String   @unique
+  password  String
+  role      String
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FinancialRecord {
+  id          String   @id @default(cuid())
+  type        String
+  eventName   String
+  amount      Float
+  category    String
+  status      String
+  date        DateTime
+  description String?
+}
+
+model AuditTrail {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String?
+  entityId  String?
+  details   String?
+  user      String?
+  changes   Json?
+  createdAt DateTime @default(now())
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
+
+model AppSettings {
+  id                      String @id @default(cuid())
+  systemTitle             String @default("Tiny Steps Event MIS")
+  systemEmail             String @default("admin@eventmis.com")
+  systemPhone             String @default("+63 912 345 6789")
+  currency                String @default("PHP")
+  companyName             String @default("Tiny Steps Events")
+  companyAddress          String @default("123 Event Street, Celebration City, Philippines")
+  businessHours           String @default("Mon-Fri: 9AM-6PM, Sat: 9AM-4PM")
+  taxRate                 String @default("12")
+  basePriceBasic          String @default("15000")
+  basePricePremium        String @default("25000")
+  basePriceDeluxe         String @default("35000")
+  additionalGuestFee      String @default("500")
+  emailNotifications      Boolean @default(true)
+  reminderDays            String @default("7")
+  confirmationEmailTemplate String @default("Dear {clientName},\n\nYour event booking for {eventTitle} has been confirmed!\n\nEvent Details:\nDate: {eventDate}\nTime: {eventTime}\nVenue: {venue}\nGuests: {numberOfGuests}\n\nTotal Amount: ₱{totalAmount}\n\nThank you for choosing Tiny Steps Events!")
+  maxGuestsPerEvent       String @default("200")
+  minAdvanceBookingDays   String @default("30")
+  landingPageTitle        String @default("Tiny Steps Events")
+  landingPageSubtitle     String @default("Creating Magical Moments for Your Special Day")
+  aboutUsTitle            String @default("About Tiny Steps Events")
+  aboutUsContent          String @default("We specialize in creating unforgettable baby shower experiences with our themed packages designed to celebrate the joy of new beginnings. Our expert team ensures every detail is perfect for your special occasion.")
+  contactEmail            String @default("info@tinystepsevents.com")
+  contactPhone            String @default("+63 912 345 6789")
+  logoUrl                 String @default("/placeholder.svg")
+  titleLogoUrl            String @default("/placeholder.svg")
+}
+
+model SystemSettings {
+  id                      String @id @default(cuid())
+  systemTitle             String @default("Tiny Steps Event MIS")
+  systemEmail             String @default("admin@eventmis.com")
+  systemPhone             String @default("+63 912 345 6789")
+  currency                String @default("PHP")
+  companyName             String @default("Tiny Steps Events")
+  companyAddress          String @default("123 Event Street, Celebration City, Philippines")
+  businessHours           String @default("Mon-Fri: 9AM-6PM, Sat: 9AM-4PM")
+  taxRate                 String @default("12")
+  basePriceBasic          String @default("15000")
+  basePricePremium        String @default("25000")
+  basePriceDeluxe         String @default("35000")
+  additionalGuestFee      String @default("500")
+  emailNotifications      Boolean @default(true)
+  reminderDays            String @default("7")
+  confirmationEmailTemplate String @default("Dear {clientName},\n\nYour event booking for {eventTitle} has been confirmed!\n\nEvent Details:\nDate: {eventDate}\nTime: {eventTime}\nVenue: {venue}\nGuests: {numberOfGuests}\n\nTotal Amount: ₱{totalAmount}\n\nThank you for choosing Tiny Steps Events!")
+  maxGuestsPerEvent       String @default("200")
+  minAdvanceBookingDays   String @default("30")
+  landingPageTitle        String @default("Tiny Steps Events")
+  landingPageSubtitle     String @default("Creating Magical Moments for Your Special Day")
+  aboutUsTitle            String @default("About Tiny Steps Events")
+  aboutUsContent          String @default("We specialize in creating unforgettable baby shower experiences with our themed packages designed to celebrate the joy of new beginnings. Our expert team ensures every detail is perfect for your special occasion.")
+  contactEmail            String @default("info@tinystepsevents.com")
+  contactPhone            String @default("+63 912 345 6789")
+  logoUrl                 String @default("/placeholder.svg")
+  titleLogoUrl            String @default("/placeholder.svg")
+}
+
+model Message {
+  id        String    @id @default(cuid())
+  recipient String
+  subject   String
+  body      String
+  type      String
+  read      Boolean   @default(false)
+  parentId  String?
+  replies   Message[] @relation("MessageReplies")
+  parent    Message?  @relation("MessageReplies", fields: [parentId], references: [id])
+  createdAt DateTime  @default(now())
+}
+
