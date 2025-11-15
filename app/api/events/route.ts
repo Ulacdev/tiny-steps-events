@@ -23,9 +23,14 @@ export async function GET(request: NextRequest) {
       prisma.event.count({ where })
     ])
 
+    const parsedEvents = events.map(event => ({
+      ...event,
+      gallery: JSON.parse(event.gallery)
+    }))
+
     return NextResponse.json({
       success: true,
-      data: events,
+      data: parsedEvents,
       count: total,
       page,
       totalPages: Math.ceil(total / limit),
@@ -58,7 +63,7 @@ export async function POST(request: NextRequest) {
         totalAmount: body.totalAmount || 15000,
         remarks: body.remarks,
         eventStatus: body.eventStatus || 'Pending',
-        gallery: body.gallery || '[]'
+        gallery: JSON.stringify(body.gallery || [])
       }
     })
 
@@ -88,6 +93,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: {
         ...updateData,
+        gallery: updateData.gallery ? JSON.stringify(updateData.gallery) : undefined,
         eventDate: updateData.eventDate ? new Date(updateData.eventDate) : undefined,
         updatedAt: new Date()
       }
